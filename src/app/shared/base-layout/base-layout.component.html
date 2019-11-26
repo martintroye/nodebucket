@@ -8,15 +8,19 @@
         <button class="navbar-link" routerLink="/" mat-button>Home</button>
         <button class="navbar-link" mat-button>About</button>
         <div fxFlex></div>
-        <button class="navbar-link" mat-icon-button>
+        <button class="navbar-link" mat-icon-button (click)="login()" *ngIf="!isUserLoggedIn">
           <mat-icon fontSet="fas" fontIcon="fa-sign-in-alt" inline></mat-icon>
         </button>
+        <span *ngIf="isUserLoggedIn">Welcome {{currentUser.firstName}}</span>
+        <button class="navbar-link" mat-icon-button (click)="logOut()" *ngIf="isUserLoggedIn">
+          <mat-icon fontSet="fas" fontIcon="fa-sign-out-alt" inline></mat-icon>
+        </button>        
       </mat-toolbar-row>
     </mat-toolbar>
   </nav>
 
   <!-- main content -->
-  <main fxFlex>
+  <main fxLayout="row" fxLayoutAlign="center center">
     <router-outlet></router-outlet>
   </main>
 

@@ -1,24 +1,27 @@
-<!-- define the material card -->
-<mat-card fxLayout="column" fxFlex="40">
-  <!-- define the header for the card -->
-  <mat-card-header>
-    <!-- add a material toolbar to the header -->
-    <mat-toolbar>
-      Login to nodebucket
-    </mat-toolbar>
-  </mat-card-header>
+<form [formGroup]="loginForm" (ngSubmit)="login()" fxLayout="row" fxLayoutAlign="center center" fxFlexFill>
+  <!-- define the material card -->
+  <mat-card fxLayout="column" fxFlex="50">
+    <!-- define the header for the card -->
+    <mat-card-header>
+      <!-- add a material toolbar to the header -->
+      <mat-toolbar>
+        Login to nodebucket
+      </mat-toolbar>
+    </mat-card-header>
 
-  <!-- define the material card content -->
-  <mat-card-content>
-    <!-- define the user name input -->
-    <mat-form-field>
-      <input type="text" matInput placeholder="Enter your id" />
-    </mat-form-field>
-  </mat-card-content>
+    <!-- define the material card content -->
+    <mat-card-content>
+      <!-- define the user name input -->
+      <mat-form-field>
+        <input type="text" matInput placeholder="Enter your id" [formControl]="loginForm.controls['empId']" />
+        <mat-error *ngIf="loginForm.controls['empId'].hasError('required')">Id is required</mat-error>
+      </mat-form-field>
+    </mat-card-content>
 
-  <!-- define the container for the buttons -->
-  <mat-card-actions>
-    <div fxFlex></div>
-    <button mat-raised-button class="btn-login">Login</button>
-  </mat-card-actions>
-</mat-card>
+    <!-- define the container for the buttons -->
+    <mat-card-actions>
+      <div fxFlex></div>
+      <button mat-raised-button type="submit">Login</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

@@ -1,5 +1,5 @@
 export class CurrentUser {
-  employeeId: number;
+  empId: number;
   firstName: string;
   lastName: string;
 }
