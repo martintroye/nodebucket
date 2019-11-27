@@ -1,9 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from 'src/app/shared/services/employee.service';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
-import { FormGroup, FormControl, RequiredValidator, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  RequiredValidator,
+  Validators
+} from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   templateUrl: './login.component.html',
@@ -11,29 +18,35 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  isUserLoggedIn = new BehaviorSubject(false);
-
   loginForm = new FormGroup({
     empId: new FormControl('', Validators.required)
   });
 
-  constructor(private employeeService: EmployeeService, private authService: AuthenticationService, private router: Router) { }
+  constructor(
+    private employeeService: EmployeeService,
+    private authService: AuthenticationService,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
 
-  ngOnInit() {
-    this.isUserLoggedIn.subscribe((isLoggedIn) => {
-      if (isLoggedIn) {
-        this.router.navigate(['']);
-      }
-    });
-  }
+  ngOnInit() { }
 
   login() {
-    console.log(this.loginForm.value);
-    this.employeeService.findEmployeeById('1007').subscribe((currentUser) => {
-      if (currentUser) {
-        this.authService.setCookie(currentUser);
-      }
-    });
+    if (this.loginForm.valid) {
+      this.employeeService.findEmployeeById(this.loginForm.value.empId).subscribe(currentUser => {
+        if (currentUser) {
+          this.authService.setCookie(currentUser);
+          this.router.navigate(['']);
+        }
+      }, (err) => {
+        this.snackBar.open('Oops, that ID is not valid, please try again.', 'OK', {
+          duration: 2000,
+        });
+      });
+    } else {
+      this.snackBar.open('That ID will not work, please try a valid value.', 'OK', {
+        duration: 2000,
+      });
+    }
   }
-
 }

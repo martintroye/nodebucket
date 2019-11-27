@@ -4,17 +4,14 @@
     <mat-card>
       <!-- define the header for the card -->
       <mat-card-header>
-        <!-- add a material toolbar to the header -->
-        <mat-toolbar>
-          Login to nodebucket
-        </mat-toolbar>
+        Login to nodebucket
       </mat-card-header>
 
       <!-- define the material card content -->
-      <mat-card-content>
-        <!-- define the user name input -->
+      <mat-card-content style="padding-top:25px;">
+        <!-- define the id input -->
         <mat-form-field>
-          <input type="text" matInput placeholder="Enter your id" [formControl]="loginForm.controls['empId']" />
+          <input type="text" matInput placeholder="Enter your id" [formControl]="loginForm.controls['empId']" autofocus />
           <mat-error *ngIf="loginForm.controls['empId'].hasError('required')">Id is required</mat-error>
         </mat-form-field>
       </mat-card-content>

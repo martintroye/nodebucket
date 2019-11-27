@@ -14,7 +14,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import {MatCardModule, MatFormFieldModule, MatInputModule} from '@angular/material';
+import {MatCardModule, MatFormFieldModule, MatInputModule, MatSnackBarModule} from '@angular/material';
 import { CookieService } from 'ngx-cookie-service';
 import { LoginComponent } from './pages/login/login.component';
 import { LoginGuard } from './shared/guards/login/login-guard';
@@ -42,7 +42,8 @@ import { AuthenticationService } from './shared/services/authentication.service'
     MatIconModule,
     MatCardModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSnackBarModule
   ],
   providers: [LoginGuard, CookieService, AuthenticationService],
   bootstrap: [AppComponent]

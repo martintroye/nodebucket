@@ -1,20 +1,30 @@
 <div fxLayout="column">
   <!-- navigation -->
   <nav fxFlex>
-    <mat-toolbar>
+    <mat-toolbar color="primary">
       <mat-toolbar-row>
         <!-- logo -->
         <button class="logo" routerLink="/" mat-button>nodebucket</button>
         <button class="navbar-link" routerLink="/" mat-button>Home</button>
         <button class="navbar-link" mat-button>About</button>
         <div fxFlex></div>
-        <button class="navbar-link" mat-icon-button (click)="login()" *ngIf="!isUserLoggedIn">
-          <mat-icon fontSet="fas" fontIcon="fa-sign-in-alt" inline></mat-icon>
+        <button
+          class="navbar-link"
+          mat-icon-button
+          (click)="login()"
+          *ngIf="!isUserLoggedIn"
+        >
+          <mat-icon fontSet="fas" fontIcon="fa-sign-in-alt" inline title="Login"></mat-icon>
         </button>
-        <span *ngIf="isUserLoggedIn">Welcome {{currentUser.firstName}}</span>
-        <button class="navbar-link" mat-icon-button (click)="logOut()" *ngIf="isUserLoggedIn">
-          <mat-icon fontSet="fas" fontIcon="fa-sign-out-alt" inline></mat-icon>
-        </button>        
+        <span *ngIf="isUserLoggedIn">Welcome {{ currentUser.firstName }}</span>
+        <button
+          class="navbar-link"
+          mat-icon-button
+          (click)="logOut()"
+          *ngIf="isUserLoggedIn"
+        >
+          <mat-icon fontSet="fas" fontIcon="fa-sign-out-alt" inline title="Logout"></mat-icon>
+        </button>
       </mat-toolbar-row>
     </mat-toolbar>
   </nav>
@@ -25,16 +35,14 @@
   </main>
 
   <!-- footer -->
-  <div fxFlex>
-    <footer class="footer">
-      <mat-toolbar class="footer-content">
-        <p>
-          &copy; {{ year | date: "yyyy" }} - nodebucket -
-          <a href="https://www.bellevue.edu/" class="bu-link" target="_blank"
-            >Bellevue University</a
-          >
-        </p>
-      </mat-toolbar>
-    </footer>
-  </div>
+  <footer class="footer" fxFlex>
+    <mat-toolbar class="footer-content" color="accent">
+      <p>
+        &copy; {{ year | date: "yyyy" }} - nodebucket -
+        <a href="https://www.bellevue.edu/" class="bu-link" target="_blank">Bellevue University</a>
+      </p>
+      <div fxFlex></div>
+      <img src="../../../assets/bLabWare-small.png" title="Brought to you by bLabWare">
+    </mat-toolbar>
+  </footer>
 </div>
