@@ -1,52 +1,99 @@
+/*
+============================================
+; Title: nodebucket
+; Author: Troy Martin
+; Date: 11/25/2019
+; Modified By: Troy Martin
+; Description: login form component
+;===========================================
+*/
+
+// imports from the angular core module
 import { Component, OnInit } from '@angular/core';
+// import our custom employee service
 import { EmployeeService } from 'src/app/shared/services/employee.service';
+// import our custom authentication service
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+// imports from the angular forms module
 import {
   FormGroup,
   FormControl,
-  RequiredValidator,
   Validators
 } from '@angular/forms';
-import { BehaviorSubject } from 'rxjs';
+// imports from the angular router module
 import { Router } from '@angular/router';
+// imports from the angular material module
 import { MatSnackBar } from '@angular/material';
-import { HttpErrorResponse } from '@angular/common/http';
 
+// declare the component
 @Component({
+  // define the HTML template file
   templateUrl: './login.component.html',
+  // define the CSS file for the component
   styleUrls: ['./login.component.css']
 })
+// declare and export the component class
 export class LoginComponent implements OnInit {
 
+  // declare the login form and set the default form group
   loginForm = new FormGroup({
+    // create the empId input control, add the required validator
     empId: new FormControl('', Validators.required)
   });
 
+  /*
+  ; Response: none
+  ; Description: Default constructor, with injections needed in component
+  */
   constructor(
     private employeeService: EmployeeService,
     private authService: AuthenticationService,
     private router: Router,
     private snackBar: MatSnackBar
-  ) {}
+  ) { }
 
+  /*
+  ; Params: none
+  ; Response: none
+  ; Description: Initialize the component
+  */
   ngOnInit() { }
 
+  /*
+  ; Params: none
+  ; Response: none
+  ; Description: log the user based on input from the form
+  */
   login() {
+    const defaultMessage = 'Oops, that ID is not valid, please try again.';
+    let message = null;
+    // if the form is valid log the user in
     if (this.loginForm.valid) {
       this.employeeService.findEmployeeById(this.loginForm.value.empId).subscribe(currentUser => {
+        // if the employee is found create the cookie and send to the root of the site
         if (currentUser) {
           this.authService.setCookie(currentUser);
           this.router.navigate(['']);
+        } else {
+          // display a message to the user
+          message = defaultMessage;
         }
       }, (err) => {
-        this.snackBar.open('Oops, that ID is not valid, please try again.', 'OK', {
-          duration: 2000,
-        });
+        // there was an error validating the user
+        message = defaultMessage;
       });
     } else {
-      this.snackBar.open('That ID will not work, please try a valid value.', 'OK', {
-        duration: 2000,
+      // if the login form is not valid give the user extra feedback
+      message = 'That ID will not work, please try a valid value.';
+    }
+
+    // if there is a message display as a snackbar message
+    if (message) {
+      // call the open method and close after 3000ms or 3s
+      this.snackBar.open(message, 'OK', {
+        duration: 3000,
       });
     }
+
   }
 }

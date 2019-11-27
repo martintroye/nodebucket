@@ -7,22 +7,28 @@
         <button class="logo" routerLink="/" mat-button>nodebucket</button>
         <button class="navbar-link" routerLink="/" mat-button>Home</button>
         <button class="navbar-link" mat-button>About</button>
+        <!-- spacer to push buttons to the right -->
         <div fxFlex></div>
+        <!-- login button displayed if the user is not logged in -->
         <button
           class="navbar-link"
           mat-icon-button
           (click)="login()"
           *ngIf="!isUserLoggedIn"
         >
+          <!-- add an icon to the button using fontawesome -->
           <mat-icon fontSet="fas" fontIcon="fa-sign-in-alt" inline title="Login"></mat-icon>
         </button>
+        <!-- display the logged in user name -->
         <span *ngIf="isUserLoggedIn">Welcome {{ currentUser.firstName }}</span>
+        <!-- display the logout button if the user is logged in -->
         <button
           class="navbar-link"
           mat-icon-button
           (click)="logOut()"
           *ngIf="isUserLoggedIn"
         >
+          <!-- add an icon to the button using fontawesome -->        
           <mat-icon fontSet="fas" fontIcon="fa-sign-out-alt" inline title="Logout"></mat-icon>
         </button>
       </mat-toolbar-row>
@@ -41,7 +47,9 @@
         &copy; {{ year | date: "yyyy" }} - nodebucket -
         <a href="https://www.bellevue.edu/" class="bu-link" target="_blank">Bellevue University</a>
       </p>
+      <!-- spacer to push buttons to the right -->
       <div fxFlex></div>
+      <!-- custom logo for bLabWare -->
       <img src="../../../assets/bLabWare-small.png" title="Brought to you by bLabWare">
     </mat-toolbar>
   </footer>

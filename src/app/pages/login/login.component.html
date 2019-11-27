@@ -1,3 +1,4 @@
+<!-- div used to allow form to size properly -->
 <div fxLayout="row" fxLayoutAlign="space-around center">
   <form [formGroup]="loginForm" (ngSubmit)="login()" fxFlex="1 1 50%">
     <!-- define the material card -->
@@ -11,7 +12,9 @@
       <mat-card-content style="padding-top:25px;">
         <!-- define the id input -->
         <mat-form-field>
+          <!-- define the empId input and set focus automatically-->
           <input type="text" matInput placeholder="Enter your id" [formControl]="loginForm.controls['empId']" autofocus />
+          <!-- validation error -->
           <mat-error *ngIf="loginForm.controls['empId'].hasError('required')">Id is required</mat-error>
         </mat-form-field>
       </mat-card-content>

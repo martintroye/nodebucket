@@ -1,27 +1,58 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { RouterModule} from '@angular/router';
-import { AppRoutes } from './app.routing';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+/*
+============================================
+; Title: nodebucket
+; Author: Richard Krasso
+; Date: 11/25/2019
+; Modified By: Troy Martin
+; Description: Application module
+;===========================================
+*/
 
+// imports from the angular platform browser module
+import { BrowserModule } from '@angular/platform-browser';
+// imports from the angular core module
+import { NgModule } from '@angular/core';
+// imports from the angular router module
+import { RouterModule} from '@angular/router';
+// import our custom routes
+import { AppRoutes } from './app.routing';
+// imports from the angular common http module
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+// imports from the angular forms module
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// import our custom app component
 import { AppComponent } from './app.component';
+// imports from the angular platform browser animations
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import our custom base layout component
 import { BaseLayoutComponent } from './shared/base-layout/base-layout.component';
+// import our custom auth layout component
 import { AuthLayoutComponent } from './shared/auth-layout/auth-layout.component';
+// import our custom home component
 import { HomeComponent } from './pages/home/home.component';
+// import the angular flex layout module
 import {FlexLayoutModule} from '@angular/flex-layout';
+// import the angular material modules
 import {MatToolbarModule} from '@angular/material/toolbar';
+// import the angular material modules
 import {MatButtonModule} from '@angular/material/button';
+// import the angular material modules
 import {MatIconModule} from '@angular/material/icon';
+// import the angular material modules
 import {MatCardModule, MatFormFieldModule, MatInputModule, MatSnackBarModule} from '@angular/material';
+// import the ngx-cookie-service module
 import { CookieService } from 'ngx-cookie-service';
+// import our custom login component
 import { LoginComponent } from './pages/login/login.component';
+// import our custom login route guard
 import { LoginGuard } from './shared/guards/login/login-guard';
+// import our custom authentication service
 import { AuthenticationService } from './shared/services/authentication.service';
 
 
+// declare the module
 @NgModule({
+  // components defined in this module
   declarations: [
     AppComponent,
     BaseLayoutComponent,
@@ -29,6 +60,7 @@ import { AuthenticationService } from './shared/services/authentication.service'
     HomeComponent,
     LoginComponent
   ],
+  // modules to import into this module
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -45,7 +77,10 @@ import { AuthenticationService } from './shared/services/authentication.service'
     MatInputModule,
     MatSnackBarModule
   ],
+  // define the injectables for the module
   providers: [LoginGuard, CookieService, AuthenticationService],
+  // define the component to bootstrap the application
   bootstrap: [AppComponent]
 })
+// declare and export the module class
 export class AppModule { }

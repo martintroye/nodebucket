@@ -13,6 +13,7 @@
 import { Injectable } from '@angular/core';
 // import the angular router module
 import { CanActivate, Router } from '@angular/router';
+// import our custom authentication service
 import { AuthenticationService } from '../../services/authentication.service';
 
 // declare the injectable
@@ -28,8 +29,10 @@ export class LoginGuard implements CanActivate {
   ; Description: If the user is logged in return true otherwise route to login page
   */
   canActivate() {
+    // retrive the authenticated user
     const user = this.authService.getCookie();
 
+    // if the user is not logged in send to the login page
     if (user === null) {
       this.router.navigate(['login']);
     }
