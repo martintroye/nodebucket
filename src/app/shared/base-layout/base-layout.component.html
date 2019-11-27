@@ -20,7 +20,10 @@
           <mat-icon fontSet="fas" fontIcon="fa-sign-in-alt" inline title="Login"></mat-icon>
         </button>
         <!-- display the logged in user name -->
-        <span *ngIf="isUserLoggedIn"><span style="font: size 0.5rem !important;">Welcome</span><br>{{ currentUser.firstName }} {{ currentUser.lastName }}</span>
+        <div fxLayout="column" fxLayoutAlign="start none" *ngIf="isUserLoggedIn" style="padding-right: 15px;">
+            <span style="font-size: 0.75rem !important;">Welcome</span>
+            <span style="font-size: 1rem !important;">{{ currentUser.firstName }} {{ currentUser.lastName }}</span>
+        </div>
         <!-- display the logout button if the user is logged in -->
         <button
           class="navbar-link"
