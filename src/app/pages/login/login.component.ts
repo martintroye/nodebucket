@@ -65,8 +65,8 @@ export class LoginComponent implements OnInit {
   ; Description: log the user based on input from the form
   */
   login() {
+    // define the default error message
     const defaultMessage = 'Oops, that ID is not valid, please try again.';
-    let message = null;
     // if the form is valid log the user in
     if (this.loginForm.valid) {
       this.employeeService.findEmployeeById(this.loginForm.value.empId).subscribe(currentUser => {
@@ -76,24 +76,26 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['']);
         } else {
           // display a message to the user
-          message = defaultMessage;
+          this.displayMessage(defaultMessage);
         }
       }, (err) => {
         // there was an error validating the user
-        message = defaultMessage;
+        this.displayMessage(defaultMessage);
       });
     } else {
       // if the login form is not valid give the user extra feedback
-      message = 'That ID will not work, please try a valid value.';
+      this.displayMessage('That ID will not work, please try a valid value.');
     }
+  }
 
-    // if there is a message display as a snackbar message
-    if (message) {
-      // call the open method and close after 3000ms or 3s
-      this.snackBar.open(message, 'OK', {
-        duration: 3000,
-      });
-    }
-
+  /*
+  ; Params: message
+  ; Response: none
+  ; Description: display the snackbar message
+  */
+  private displayMessage(message: string) {
+    this.snackBar.open(message, 'OK', {
+      duration: 3000,
+    });
   }
 }
