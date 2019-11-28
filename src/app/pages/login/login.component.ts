@@ -84,7 +84,7 @@ export class LoginComponent implements OnInit {
       });
     } else {
       // if the login form is not valid give the user extra feedback
-      this.displayMessage('That ID will not work, please try a valid value.');
+      this.displayMessage('Please enter a valid ID and try again.');
     }
   }
 

@@ -45,7 +45,7 @@ import { CookieService } from 'ngx-cookie-service';
 // import our custom login component
 import { LoginComponent } from './pages/login/login.component';
 // import our custom login route guard
-import { LoginGuard } from './shared/guards/login/login-guard';
+import { AuthGuard } from './shared/guards/auth/auth-guard';
 // import our custom authentication service
 import { AuthenticationService } from './shared/services/authentication.service';
 
@@ -78,7 +78,7 @@ import { AuthenticationService } from './shared/services/authentication.service'
     MatSnackBarModule
   ],
   // define the injectables for the module
-  providers: [LoginGuard, CookieService, AuthenticationService],
+  providers: [AuthGuard, CookieService, AuthenticationService],
   // define the component to bootstrap the application
   bootstrap: [AppComponent]
 })

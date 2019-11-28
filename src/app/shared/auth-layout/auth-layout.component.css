@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+}
+
+#backgroundDiv::after {
+  content: "";
+  background: url("../../../assets/kelly-sikkema--1_RZL8BGBM-unsplash.jpg");
+  opacity: 0.2;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+  background-size: cover;
+}

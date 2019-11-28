@@ -71,7 +71,7 @@ export class BaseLayoutComponent implements OnInit {
     // call the remove cookie method
     this.authService.removeCookie().subscribe(() => {
       // on return navigate to the login screen
-      this.router.navigate(['login']);
+      this.router.navigate(['session/login']);
     });
   }
 
@@ -82,7 +82,7 @@ export class BaseLayoutComponent implements OnInit {
   */
   login() {
     // route to the login screen
-    this.router.navigate(['login']);
+    this.router.navigate(['session/login']);
   }
 
 }
