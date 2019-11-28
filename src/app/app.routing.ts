@@ -17,7 +17,8 @@ import {HomeComponent} from './pages/home/home.component';
 // import our custom login component
 import { LoginComponent } from './pages/login/login.component';
 // import our custom route guard
-import { LoginGuard } from './shared/guards/login/login-guard';
+import { AuthGuard } from './shared/guards/auth/auth-guard';
+import { AuthLayoutComponent } from './shared/auth-layout/auth-layout.component';
 
 // define the routes used in the application
 export const AppRoutes: Routes = [
@@ -29,14 +30,20 @@ export const AppRoutes: Routes = [
       {
         path: '',
         component: HomeComponent,
-        canActivate: [LoginGuard]
+        canActivate: [AuthGuard]
       },
+    ]
+  },
+  {
+    path: 'session',
+    component: AuthLayoutComponent,
+    children: [
       // define the login route, should not have route guard
       {
         path: 'login',
         component: LoginComponent
       }
     ]
-  },
+  }
 
 ];

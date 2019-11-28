@@ -19,7 +19,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 // declare the injectable
 @Injectable()
 // declare and export the class, implementing the CanActivate route guard interface
-export class LoginGuard implements CanActivate {
+export class AuthGuard implements CanActivate {
   // define the constructor and inject a router
   constructor(private router: Router, private authService: AuthenticationService) {}
 
@@ -29,12 +29,12 @@ export class LoginGuard implements CanActivate {
   ; Description: If the user is logged in return true otherwise route to login page
   */
   canActivate() {
-    // retrive the authenticated user
+    // retrieve the authenticated user
     const user = this.authService.getCookie();
 
     // if the user is not logged in send to the login page
     if (user === null) {
-      this.router.navigate(['login']);
+      this.router.navigate(['session/login']);
     }
 
     // return the logged in status

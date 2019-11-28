@@ -4,14 +4,14 @@
     <mat-toolbar color="primary">
       <mat-toolbar-row>
         <!-- logo -->
-        <button class="logo" routerLink="/" mat-button>nodebucket</button>
-        <button class="navbar-link" routerLink="/" mat-button>Home</button>
-        <button class="navbar-link" mat-button>About</button>
+        <button class="font logo" routerLink="/" mat-button>nodebucket</button>
+        <button class="font navbar-link" routerLink="/" mat-button>Home</button>
+        <button class="font navbar-link" mat-button>About</button>
         <!-- spacer to push buttons to the right -->
         <div fxFlex></div>
         <!-- login button displayed if the user is not logged in -->
         <button
-          class="navbar-link"
+          class="font navbar-link"
           mat-icon-button
           (click)="login()"
           *ngIf="!isUserLoggedIn"
@@ -20,10 +20,8 @@
           <mat-icon fontSet="fas" fontIcon="fa-sign-in-alt" inline title="Login"></mat-icon>
         </button>
         <!-- display the logged in user name -->
-        <div fxLayout="column" fxLayoutAlign="start none" *ngIf="isUserLoggedIn" style="padding-right: 15px;">
-            <span style="font-size: 0.75rem !important;">Welcome</span>
-            <span style="font-size: 1rem !important;">{{ currentUser.firstName }} {{ currentUser.lastName }}</span>
-        </div>
+        <span style="font-size: 1rem !important;">{{ currentUser.firstName }} {{ currentUser.lastName }}</span>
+
         <!-- display the logout button if the user is logged in -->
         <button
           class="navbar-link"
@@ -31,7 +29,7 @@
           (click)="logOut()"
           *ngIf="isUserLoggedIn"
         >
-          <!-- add an icon to the button using fontawesome -->        
+          <!-- add an icon to the button using fontawesome -->
           <mat-icon fontSet="fas" fontIcon="fa-sign-out-alt" inline title="Logout"></mat-icon>
         </button>
       </mat-toolbar-row>
@@ -45,7 +43,7 @@
 
   <!-- footer -->
   <footer class="footer" fxFlex>
-    <mat-toolbar class="footer-content" color="accent">
+    <mat-toolbar class="font footer-content" color="accent">
       <p>
         &copy; {{ year | date: "yyyy" }} - nodebucket -
         <a href="https://www.bellevue.edu/" class="bu-link" target="_blank">Bellevue University</a>

@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+}
+
+/deep/ .welcome {
+  font-weight: 900 !important;
+  font-size: 2rem !important;
+}
+
+/deep/ .tagLine {
+  font-size: 1rem !important;
+}
+
+
