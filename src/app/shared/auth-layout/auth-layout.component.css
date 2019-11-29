@@ -1,3 +1,6 @@
+/*
+; create a style to apply the background image for the login page
+*/
 #backgroundDiv::after {
   content: "";
   background: url("../../../assets/kelly-sikkema--1_RZL8BGBM-unsplash.jpg") no-repeat center center fixed;

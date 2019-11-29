@@ -1,4 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
+/*
+; import angular material theme
+*/
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 html, body {
@@ -11,6 +13,9 @@ body {
   min-height: 100vh;
 }
 
+/*
+; font style to override theme font
+*/
 .font {
   font-family: Muli, Roboto, "Open Sans", "sans serif" !important;
 }
