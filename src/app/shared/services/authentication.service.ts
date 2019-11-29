@@ -17,7 +17,7 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 // import our custom CurrentUser model
 import { CurrentUser } from '../models/current-user';
 
-// delcare the injectable
+// declare the injectable
 @Injectable({
   providedIn: 'root'
 })
@@ -64,7 +64,7 @@ export class AuthenticationService {
   ; Description: create the authentication cookie and log in
   */
   public setCookie(user: CurrentUser): void {
-    // if the user arugment is not null create the cookie
+    // if the user argument is not null create the cookie
     if (user) {
       // turn the user object into a string
       const cookieValue = JSON.stringify(user);

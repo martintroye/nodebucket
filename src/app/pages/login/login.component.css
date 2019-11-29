@@ -1,12 +1,24 @@
+/*
+; Styles applied to the auth-layout element to maintain the flex tree
+; http://blog.bogdancarpean.com/how-to-apply-flex-on-angular-component/
+*/
 :host {
   display: flex;
 }
 
+/*
+; deep applied to override material theme settings
+; https://stackoverflow.com/questions/44089246/override-angular-material-style-in-angular-component?rq=1
+*/
 /deep/ .welcome {
   font-weight: 900 !important;
   font-size: 2rem !important;
 }
 
+/*
+; deep applied to override material theme settings
+; https://stackoverflow.com/questions/44089246/override-angular-material-style-in-angular-component?rq=1
+*/
 /deep/ .tagLine {
   font-size: 1rem !important;
 }

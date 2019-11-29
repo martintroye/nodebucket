@@ -1,14 +1,26 @@
+<!--
+============================================
+; Title: nodebucket
+; Author: Troy Martin
+; Date: 11/29/2019
+; Modified By: Troy Martin
+; Description: Login form
+;===========================================
+-->
+
 <!-- define the material card -->
 <mat-card>
-  <mat-toolbar color="primary">
-    <mat-toolbar-row fxLayout="column" fxLayoutAlign="center center">
+  <!-- material toolbar with items centered -->
+  <mat-toolbar color="primary" fxLayout="column" fxLayoutAlign="center center">
+    <mat-toolbar-row>
       <h1 class="font welcome">Welcome to nodebucket</h1>
     </mat-toolbar-row>
-    <mat-toolbar-row fxLayout="column" fxLayoutAlign="center center">
+    <mat-toolbar-row>
       <span class="font tagLine">Keeping track of your work has never been easier!</span>
     </mat-toolbar-row>
   </mat-toolbar>
 
+  <!-- define the reactive form -->
   <form [formGroup]="loginForm" (ngSubmit)="login(); loginForm.reset()">
     <!-- define the material card content -->
     <mat-card-content style="padding-top:25px;">
@@ -31,7 +43,7 @@
     <mat-card-actions>
       <!-- custom logo for bLabWare -->
       <img src="../../../assets/bLabWare-small.png" title="Brought to you by bLabWare">
-
+      <!-- spacer -->
       <div fxFlex></div>
       <button mat-raised-button type="submit" class="font">Login</button>
     </mat-card-actions>

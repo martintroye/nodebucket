@@ -17,7 +17,7 @@ import { CurrentUser } from '../models/current-user';
 // imports from the angular router modules
 import { Router } from '@angular/router';
 
-// delcare the component
+// declare the component
 @Component({
   // define the select to output the component html
   selector: 'app-base-layout',
