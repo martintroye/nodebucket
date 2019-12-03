@@ -27,7 +27,7 @@ var taskSchema = new mongoose.Schema({
   // declare the priority and its possible values
   priority: {
     type: String,
-    enum: ['I', 'II', 'III', 'IV', 'V'],
+    enum: ['1', '2', '3', '4', '5'],
     required: false
   },
   // declare the background color for the task, not required

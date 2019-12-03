@@ -67,6 +67,7 @@ app.get('/api/employees/:empId', (request, response) => {
   if (!employeeId) {
     // set the status code to 400, bad request and send a message
     response.status(400).send('Request has invalid or missing employee id.');
+    return;
   }
 
   // Using the findOne method of the employee model search for a matching employee id
@@ -100,6 +101,7 @@ app.get('/api/employees/:empId/tasks', (request, response) => {
   if (!employeeId) {
     // set the status code to 400, bad request and send a message
     response.status(400).send('Request has invalid or missing employee id.');
+    return;
   }
 
   // Using the findOne method of the employee model search for a matching employee id
@@ -123,7 +125,7 @@ app.get('/api/employees/:empId/tasks', (request, response) => {
 
 /*
 ; Params: empId, callback function
-; Response: todo tasks
+; Response: empId and todo list
 ; Description: CreateTask - add a task to the employee todo list
 */
 app.post('/api/employees/:empId/tasks', (request, response) => {
@@ -134,10 +136,14 @@ app.post('/api/employees/:empId/tasks', (request, response) => {
   if (!employeeId) {
     // set the status code to 400, bad request and send a message
     response.status(400).send('Request has invalid or missing employee id.');
+    return;
   }
 
-  if (!request.body) {
+  // validate that the request body is set and that at least the description is given
+  if (!request.body.description) {
+    // set the status code to 400, bad request and return a message
     response.status(400).send('Request body is not valid.');
+    return;
   }
 
   // Using the findOne method of the employee model search for a matching employee id
@@ -151,15 +157,16 @@ app.post('/api/employees/:empId/tasks', (request, response) => {
         // set the status code to 404, not found and return a message
         response.status(404).send('Invalid employee, not found.');
       } else {
-        // set the status code to 200, OK and return the response as json
         const task = request.body;
         // add the task to the todo list
         res.todo.push(task)
         // save the task
         res.save(null, (err, doc) => {
           if (err) {
+            // set the status to 400, bad request and return the error message
             response.status(400).send(err.message);
           } else {
+            // set the status code to 201, created and return the updated list
             response.status(201).send(doc.toJSON());
           }
         });
@@ -171,29 +178,27 @@ app.post('/api/employees/:empId/tasks', (request, response) => {
 
 /*
 ; Params: empId, callback function
-; Response: todo tasks
+; Response: empId, todo, doing, done lists
 ; Description: UpdateTask - move tasks between lists
 */
-app.put('/api/employees/:empId/tasks/:taskId', (request, response) => {
+app.put('/api/employees/:empId/tasks', (request, response) => {
   // Declare the employee id and get the value off the url if it exists
   var employeeId = request.params && request.params.empId ? request.params.empId : null;
-  var taskId = request.params && request.params.taskId ? request.params.taskId : null;
 
   // if the employeeId was not defined then return a bad request response
   if (!employeeId) {
     // set the status code to 400, bad request and send a message
     response.status(400).send('Request has invalid or missing employee id.');
+    return;
   }
 
-  // if the taskId was not defined then return a bad request response
-  if (!taskId) {
+  // validate that the request body is defined and that the todo, doing and done arrays are defined
+  if (!request.body.todo
+    || !request.body.doing
+    || !request.body.done) {
     // set the status code to 400, bad request and send a message
-    response.status(400).send('Request has invalid or missing task id');
-  }
-
-  console.log(request.body.value);
-  if (!request.body.value) {
     response.status(400).send('Request body is not valid.');
+    return;
   }
 
   // Using the findOne method of the employee model search for a matching employee id
@@ -207,19 +212,79 @@ app.put('/api/employees/:empId/tasks/:taskId', (request, response) => {
         // set the status code to 404, not found and return a message
         response.status(404).send('Invalid employee, not found.');
       } else {
-        // set the status code to 200, OK and return the response as json
-        const taskList = request.body.value;
+
+        // set the document array to the corresponding request array
+        res.todo = request.body.todo;
+        res.doing = request.body.doing;
+        res.done = request.body.done;
 
         // save the task
-        // res.save(null, (err, doc) => {
-        //   if (err) {
-        //     response.status(400).send(err.message);
-        //   } else {
-        //     // return a response that the task was create and return the list of todo
-        //     response.status(201).send(doc.toJSON());
-        //   }
-        // });
-        response.status(200);
+        res.save(null, (err, doc) => {
+          if (err) {
+            // set the status code to 400, bad request and send the error message
+            response.status(400).send(err.message);
+          } else {
+            // set the status code to 200, OK and return the updated arrays
+            response.status(200).send(doc.toJSON());
+          }
+        });
+      }
+    }
+  });
+});
+
+/*
+; Params: empId, taskId, callback function
+; Response: empId, todo, doing, done lists
+; Description: DeleteTask - remove a task from a list
+*/
+app.delete('/api/employees/:empId/tasks/:taskId', (request, response) => {
+  // Declare the employee id and get the value off the url if it exists
+  var employeeId = request.params && request.params.empId ? request.params.empId : null;
+  // Declare the task id and get the value off the url if it exists
+  var taskId = request.params && request.params.taskId ? request.params.taskId : null;
+
+  // if the employeeId was not defined then return a bad request response
+  if (!employeeId) {
+    // set the status code to 400, bad request and send a message
+    response.status(400).send('Request has invalid or missing employee id.');
+    return;
+  }
+
+  // if the taskId was not defined then return a bad request response
+  if (!taskId) {
+    // set the status code to 400, bad request and send a message
+    response.status(400).send('Request has invalid or missing task id.');
+    return;
+  }
+
+  // Using the findOne method of the employee model search for a matching employee id
+  employeeModel.findOne({ empId: employeeId }, 'empId todo doing done', (err, res) => {
+    // if there is an error return a 500, server error and the error
+    if (err) {
+      response.status(500).send(err);
+    } else {
+      // if a matching employee is not found res will be null
+      if (!res) {
+        // set the status code to 404, not found and return a message
+        response.status(404).send('Invalid employee, not found.');
+      } else {
+
+        // filter the task from the arrays
+        res.todo = res.todo.filter((t) => t._id != taskId);
+        res.doing = res.doing.filter((t) => t._id != taskId);
+        res.done = res.done.filter((t) => t._id != taskId);
+
+        // save the task
+        res.save(null, (err, doc) => {
+          if (err) {
+            // set the status code to 400, bad request and send the error message
+            response.status(400).send(err.message);
+          } else {
+            // set the status code to 200, OK and return the updated arrays
+            response.status(200).send(doc.toJSON());
+          }
+        });
       }
     }
   });
