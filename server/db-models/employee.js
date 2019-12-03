@@ -9,6 +9,7 @@
 */
 // declare the mongoose variable and import the mongoose module
 const mongoose = require('mongoose');
+const Task = require('./task');
 
 // Declare the Schema of the Mongo model
 var employeeSchema = new mongoose.Schema({
@@ -27,7 +28,10 @@ var employeeSchema = new mongoose.Schema({
   // declare the last name property and set the options
   lastName: {
     type: String,
-  }
+  },
+  todo: [Task],
+  doing: [Task],
+  done: [Task]
 });
 
 //Export the Employee model using the employee schema
