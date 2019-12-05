@@ -67,25 +67,29 @@ app.get('/api/employees/:empId', (request, response) => {
   if (!employeeId) {
     // set the status code to 400, bad request and send a message
     response.status(400).send('Request has invalid or missing employee id.');
-    return;
+  } else {
+    // Using the findOne method of the employee model search for a matching employee id
+    employeeModel.findOne({ empId: employeeId }, (err, res) => {
+      // if there is an error
+      if (err) {
+        // log the error to the console
+        console.log('An error occurred finding the employee', err);
+        // return an http status code 500, server error and the error
+        response.status(500).send(err);
+      } else {
+        // if a matching employee is not found res will be null
+        if (!res) {
+          // set the status code to 403, forbidden and return a message
+          response.status(403).send('Invalid employee.');
+        } else {
+          // set the status code to 200, OK and return the response as json
+          response.status(200).send(res.toJSON());
+        }
+      }
+    });
   }
 
-  // Using the findOne method of the employee model search for a matching employee id
-  employeeModel.findOne({ empId: employeeId }, (err, res) => {
-    // if there is an error return a 500, server error and the error
-    if (err) {
-      response.status(500).send(err);
-    } else {
-      // if a matching employee is not found res will be null
-      if (!res) {
-        // set the status code to 403, forbidden and return a message
-        response.status(403).send('Invalid employee.');
-      } else {
-        // set the status code to 200, OK and return the response as json
-        response.status(200).send(res.toJSON());
-      }
-    }
-  });
+
 });
 
 /*
@@ -101,26 +105,27 @@ app.get('/api/employees/:empId/tasks', (request, response) => {
   if (!employeeId) {
     // set the status code to 400, bad request and send a message
     response.status(400).send('Request has invalid or missing employee id.');
-    return;
-  }
-
-  // Using the findOne method of the employee model search for a matching employee id
-  employeeModel.findOne({ empId: employeeId }, 'empId todo doing done', (err, res) => {
-    // if there is an error return a 500, server error and the error
-    if (err) {
-      response.status(500).send(err);
-    } else {
-      // if a matching employee is not found res will be null
-      if (!res) {
-        // set the status code to 404, not found and return a message
-        response.status(404).send('Invalid employee, not found.');
+  } else {
+    // Using the findOne method of the employee model search for a matching employee id
+    employeeModel.findOne({ empId: employeeId }, 'empId todo doing done', (err, res) => {
+      // if there is an error
+      if (err) {
+        // log the error to the console
+        console.log('An error occurred finding the employee tasks', err);
+        // return an http status code 500, server error and the error
+        response.status(500).send(err);
       } else {
-        // set the status code to 200, OK and return the response as json
-        response.status(200).send(res.toJSON());
+        // if a matching employee is not found res will be null
+        if (!res) {
+          // set the status code to 404, not found and return a message
+          response.status(404).send('Invalid employee, not found.');
+        } else {
+          // set the status code to 200, OK and return the response as json
+          response.status(200).send(res.toJSON());
+        }
       }
-    }
-  });
-
+    });
+  }
 });
 
 /*
@@ -136,44 +141,45 @@ app.post('/api/employees/:empId/tasks', (request, response) => {
   if (!employeeId) {
     // set the status code to 400, bad request and send a message
     response.status(400).send('Request has invalid or missing employee id.');
-    return;
-  }
-
-  // validate that the request body is set and that at least the description is given
-  if (!request.body.description) {
+  } else if (!request.body.description) {
+    // validate that the request body is set and that at least the description is given
     // set the status code to 400, bad request and return a message
     response.status(400).send('Request body is not valid.');
-    return;
-  }
-
-  // Using the findOne method of the employee model search for a matching employee id
-  employeeModel.findOne({ empId: employeeId }, 'empId todo', (err, res) => {
-    // if there is an error return a 500, server error and the error
-    if (err) {
-      response.status(500).send(err);
-    } else {
-      // if a matching employee is not found res will be null
-      if (!res) {
-        // set the status code to 404, not found and return a message
-        response.status(404).send('Invalid employee, not found.');
+  } else {
+    // Using the findOne method of the employee model search for a matching employee id
+    employeeModel.findOne({ empId: employeeId }, 'empId todo', (err, res) => {
+      // if there is an error
+      if (err) {
+        // log the error to the console
+        console.log('An error occurred finding the employee tasks', err);
+        // return an http status code 500, server error and the error
+        response.status(500).send(err);
       } else {
-        const task = request.body;
-        // add the task to the todo list
-        res.todo.push(task)
-        // save the task
-        res.save(null, (err, doc) => {
-          if (err) {
-            // set the status to 400, bad request and return the error message
-            response.status(400).send(err.message);
-          } else {
-            // set the status code to 201, created and return the updated list
-            response.status(201).send(doc.toJSON());
-          }
-        });
-
+        // if a matching employee is not found res will be null
+        if (!res) {
+          // set the status code to 404, not found and return a message
+          response.status(404).send('Invalid employee, not found.');
+        } else {
+          const task = request.body;
+          // add the task to the todo list
+          res.todo.push(task)
+          // save the task
+          res.save(null, (err, doc) => {
+            // if there is an error
+            if (err) {
+              // log the error to the console
+              console.log(err);
+              // set the status to 400, bad request and return the error message
+              response.status(400).send(err.message);
+            } else {
+              // set the status code to 201, created and return the updated list
+              response.status(201).send(doc.toJSON());
+            }
+          });
+        }
       }
-    }
-  });
+    });
+  }
 });
 
 /*
@@ -189,48 +195,50 @@ app.put('/api/employees/:empId/tasks', (request, response) => {
   if (!employeeId) {
     // set the status code to 400, bad request and send a message
     response.status(400).send('Request has invalid or missing employee id.');
-    return;
-  }
-
-  // validate that the request body is defined and that the todo, doing and done arrays are defined
-  if (!request.body.todo
+  } else if (!request.body.todo
     || !request.body.doing
     || !request.body.done) {
+    // validate that the request body is defined and that the todo, doing and done arrays are defined
     // set the status code to 400, bad request and send a message
     response.status(400).send('Request body is not valid.');
-    return;
-  }
-
-  // Using the findOne method of the employee model search for a matching employee id
-  employeeModel.findOne({ empId: employeeId }, 'empId todo doing done', (err, res) => {
-    // if there is an error return a 500, server error and the error
-    if (err) {
-      response.status(500).send(err);
-    } else {
-      // if a matching employee is not found res will be null
-      if (!res) {
-        // set the status code to 404, not found and return a message
-        response.status(404).send('Invalid employee, not found.');
+  } else {
+    // Using the findOne method of the employee model search for a matching employee id
+    employeeModel.findOne({ empId: employeeId }, 'empId todo doing done', (err, res) => {
+      // if there is an error
+      if (err) {
+        // log the error to the console
+        console.log('An error occurred finding the employee tasks', err);
+        // return an http status code 500, server error and the error
+        response.status(500).send(err);
       } else {
+        // if a matching employee is not found res will be null
+        if (!res) {
+          // set the status code to 404, not found and return a message
+          response.status(404).send('Invalid employee, not found.');
+        } else {
 
-        // set the document array to the corresponding request array
-        res.todo = request.body.todo;
-        res.doing = request.body.doing;
-        res.done = request.body.done;
+          // set the document array to the corresponding request array
+          res.todo = request.body.todo;
+          res.doing = request.body.doing;
+          res.done = request.body.done;
 
-        // save the task
-        res.save(null, (err, doc) => {
-          if (err) {
-            // set the status code to 400, bad request and send the error message
-            response.status(400).send(err.message);
-          } else {
-            // set the status code to 200, OK and return the updated arrays
-            response.status(200).send(doc.toJSON());
-          }
-        });
+          // save the task
+          res.save(null, (err, doc) => {
+            // if there is an error
+            if (err) {
+              // log the error to the console
+              console.log('An error occurred updating the task arrays', err);
+              // set the status code to 400, bad request and send the error message
+              response.status(400).send(err.message);
+            } else {
+              // set the status code to 200, OK and return the updated arrays
+              response.status(200).send(doc.toJSON());
+            }
+          });
+        }
       }
-    }
-  });
+    });
+  }
 });
 
 /*
@@ -248,46 +256,48 @@ app.delete('/api/employees/:empId/tasks/:taskId', (request, response) => {
   if (!employeeId) {
     // set the status code to 400, bad request and send a message
     response.status(400).send('Request has invalid or missing employee id.');
-    return;
-  }
-
-  // if the taskId was not defined then return a bad request response
-  if (!taskId) {
+  } else if (!taskId) {
+    // if the taskId was not defined then return a bad request response
     // set the status code to 400, bad request and send a message
     response.status(400).send('Request has invalid or missing task id.');
-    return;
-  }
-
-  // Using the findOne method of the employee model search for a matching employee id
-  employeeModel.findOne({ empId: employeeId }, 'empId todo doing done', (err, res) => {
-    // if there is an error return a 500, server error and the error
-    if (err) {
-      response.status(500).send(err);
-    } else {
-      // if a matching employee is not found res will be null
-      if (!res) {
-        // set the status code to 404, not found and return a message
-        response.status(404).send('Invalid employee, not found.');
+  } else {
+    // Using the findOne method of the employee model search for a matching employee id
+    employeeModel.findOne({ empId: employeeId }, 'empId todo doing done', (err, res) => {
+      // if there is an error
+      if (err) {
+        // log the error to the console
+        console.log('An error occurred finding the employee tasks', err);
+        // return an http status code 500, server error and the error
+        response.status(500).send(err);
       } else {
+        // if a matching employee is not found res will be null
+        if (!res) {
+          // set the status code to 404, not found and return a message
+          response.status(404).send('Invalid employee, not found.');
+        } else {
 
-        // filter the task from the arrays
-        res.todo = res.todo.filter((t) => t._id != taskId);
-        res.doing = res.doing.filter((t) => t._id != taskId);
-        res.done = res.done.filter((t) => t._id != taskId);
+          // filter the task from the arrays that do not match the deleted task
+          res.todo = res.todo.filter((t) => t._id != taskId);
+          res.doing = res.doing.filter((t) => t._id != taskId);
+          res.done = res.done.filter((t) => t._id != taskId);
 
-        // save the task
-        res.save(null, (err, doc) => {
-          if (err) {
-            // set the status code to 400, bad request and send the error message
-            response.status(400).send(err.message);
-          } else {
-            // set the status code to 200, OK and return the updated arrays
-            response.status(200).send(doc.toJSON());
-          }
-        });
+          // save the task
+          res.save(null, (err, doc) => {
+            // if there is an error
+            if (err) {
+              // log the error to the console
+              console.log('An error occurred saving the tasks after a delete', err);
+              // set the status code to 400, bad request and send the error message
+              response.status(400).send(err.message);
+            } else {
+              // set the status code to 200, OK and return the updated arrays
+              response.status(200).send(doc.toJSON());
+            }
+          });
+        }
       }
-    }
-  });
+    });
+  }
 });
 
 /**
