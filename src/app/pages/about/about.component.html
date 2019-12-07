@@ -1,43 +1,49 @@
 <mat-card style="border: 1px solid black;" fxFlex="1 1 75">
   <mat-card-title>
-    <h3>About</h3>
+    <h3 style="margin-block-start: 0 !important;margin-block-end: 0 !important;">About</h3>
   </mat-card-title>
   <!-- define the material card content -->
   <mat-card-content style="padding-top:25px;">
     <div fxLayout="column" fxLayoutAlign="center center">
       <div fxLayout="row" fxLayoutAlign="center center">
-        <figure style="max-height: 311px;max-width: 375px;">
-          <img
-            src="../../../assets/IMG_0836.jpg"
-            style="border-radius: 10%;max-height: 100%; max-width: 100%;"
-            title="Ruby"
-          />
-          <figcaption style="text-align: center;">Ruby</figcaption>
-        </figure>
-        <figure style="max-height: 311px;max-width: 375px;">
-          <img
-            src="../../../assets/IMG_2758.JPG"
-            style="border-radius: 10%;max-height: 100%; max-width: 100%;"
-            title="Mille"
-          />
-          <figcaption style="text-align: center;">Millie</figcaption>
-        </figure>
+        <div fxLayout="column">
+            <figure style="max-height: 156px;max-width: 188px;">
+                <img
+                  src="../../../assets/IMG_0836.jpg"
+                  style="border-radius: 10%;max-height: 100%; max-width: 100%;"
+                  title="Ruby"
+                />
+                <figcaption style="text-align: center;">Ruby</figcaption>
+              </figure>
+              <figure style="max-height: 155px;max-width: 188px;">
+                <img
+                  src="../../../assets/IMG_2758.JPG"
+                  style="border-radius: 10%;max-height: 100%; max-width: 100%;"
+                  title="Mille"
+                />
+                <figcaption style="text-align: center;">Millie</figcaption>
+              </figure>
+        </div>
+        <article fxFlex style="padding-top:.5rem;">
+            <p>
+              Meet our founders, Ruby and Millie. Ruby and Millie have one goal to
+              deliver technology solutions that help people get their work done so
+              they have more time to play with their dogs, and well if they have
+              to, their cats.
+            </p>
+            <p>
+              The application nodebucket, a task management solution, came to them
+              one day when it was apparent that someone had forgotten to give them
+              there daily walk.
+            </p>
+            <p>
+              With nodebucket you can track what you have to-do, have started and
+              what you have completed. The simple drag and drop interface allows
+              you to quickly update the status of the task.
+            </p>
+          </article>
       </div>
-      <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
-        <article fxFlex="1 1 75" style="padding-top:.5rem;">
-          <p>
-            Meet our founders, Ruby and Millie. Ruby and Millie have one goal to
-            deliver technology solutions that help people get their work done so
-            they have more time to play with their dogs, and well if they have
-            to, their cats.
-          </p>
-          <p>
-            The application nodebucket, a task management solution, came to them
-            one day when it was apparent that someone had forgotten to give them
-            there daily walk.
-          </p>
-        </article>
-      </div>
+
     </div>
   </mat-card-content>
 
@@ -46,7 +52,7 @@
     <!-- custom logo for bLabWare -->
     <img
       src="../../../assets/bLabWare-small.png"
-      title="Brought to you by bLabWare"
+      title="Brought to you by bLabWare" style="padding-left: 1rem;"
     />
     <!-- spacer -->
     <div fxFlex></div>
