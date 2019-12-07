@@ -48,6 +48,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { AuthGuard } from './shared/guards/auth/auth-guard';
 // import our custom authentication service
 import { AuthenticationService } from './shared/services/authentication.service';
+// import out custom about component
+import { AboutComponent } from './pages/about/about.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 
 // declare the module
@@ -58,7 +61,9 @@ import { AuthenticationService } from './shared/services/authentication.service'
     BaseLayoutComponent,
     AuthLayoutComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    AboutComponent,
+    NotFoundComponent
   ],
   // modules to import into this module
   imports: [
