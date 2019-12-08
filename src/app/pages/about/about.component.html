@@ -1,6 +1,6 @@
 <mat-card style="border: 1px solid black;" fxFlex="1 1 75">
   <mat-card-title>
-    <h3 style="margin-block-start: 0 !important;margin-block-end: 0 !important;">About</h3>
+    <h3 class="font" style="margin-block-start: 0 !important;margin-block-end: 0 !important;">About</h3>
   </mat-card-title>
   <!-- define the material card content -->
   <mat-card-content style="padding-top:25px;">
@@ -13,7 +13,7 @@
                   style="border-radius: 10%;max-height: 100%; max-width: 100%;"
                   title="Ruby"
                 />
-                <figcaption style="text-align: center;">Ruby</figcaption>
+                <figcaption class="font" style="text-align: center;">Ruby</figcaption>
               </figure>
               <figure style="max-height: 155px;max-width: 188px;">
                 <img
@@ -21,22 +21,23 @@
                   style="border-radius: 10%;max-height: 100%; max-width: 100%;"
                   title="Mille"
                 />
-                <figcaption style="text-align: center;">Millie</figcaption>
+                <figcaption class="font" style="text-align: center;">Millie</figcaption>
               </figure>
         </div>
+        
         <article fxFlex style="padding-top:.5rem;">
-            <p>
+            <p class="font">
               Meet our founders, Ruby and Millie. Ruby and Millie have one goal to
               deliver technology solutions that help people get their work done so
               they have more time to play with their dogs, and well if they have
               to, their cats.
             </p>
-            <p>
+            <p class="font">
               The application nodebucket, a task management solution, came to them
               one day when it was apparent that someone had forgotten to give them
               there daily walk.
             </p>
-            <p>
+            <p class="font">
               With nodebucket you can track what you have to-do, have started and
               what you have completed. The simple drag and drop interface allows
               you to quickly update the status of the task.
@@ -48,13 +49,17 @@
   </mat-card-content>
 
   <!-- define the container for the buttons -->
-  <mat-card-footer>
+  <mat-card-footer fxLayout="row" fxLayoutAlign="center center">
     <!-- custom logo for bLabWare -->
     <img
       src="../../../assets/bLabWare-small.png"
-      title="Brought to you by bLabWare" style="padding-left: 1rem;"
+      title="Brought to you by bLabWare" style="padding-left: 1rem;padding-bottom:1rem;"
     />
     <!-- spacer -->
     <div fxFlex></div>
+    <span><i style="font-size:1.5rem;padding-right:1rem;" class="fas fa-envelope-square" title="Email us"></i></span>
+    <span><i style="font-size:1.5rem;padding-right:1rem;" class="fab fa-twitter-square" title="Twitter"></i></span>
+    <span><i style="font-size:1.5rem;padding-right:1rem;" class="fab fa-facebook-square" title="Facebook"></i></span>
+    <span><i style="font-size:1.5rem;padding-right:1rem;" class="fab fa-instagram" title="Instagram"></i></span>
   </mat-card-footer>
 </mat-card>

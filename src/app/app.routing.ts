@@ -9,11 +9,11 @@
 */
 
 // imports from the angular router module
-import {Routes} from '@angular/router';
+import { Routes } from '@angular/router';
 // import the custom base layout component
-import {BaseLayoutComponent} from './shared/base-layout/base-layout.component';
+import { BaseLayoutComponent } from './shared/base-layout/base-layout.component';
 // import our custom home component
-import {HomeComponent} from './pages/home/home.component';
+import { HomeComponent } from './pages/home/home.component';
 // import our custom login component
 import { LoginComponent } from './pages/login/login.component';
 import { AboutComponent } from './pages/about/about.component';
@@ -40,16 +40,6 @@ export const AppRoutes: Routes = [
       {
         path: 'about',
         component: AboutComponent
-      },
-      // define the path to handle routes that do not match
-      {
-        path: '**',
-        redirectTo: '404'
-      },
-      // define the route to handle 404, not found
-      {
-        path: '404',
-        component: NotFoundComponent
       }
     ]
   },
@@ -63,6 +53,15 @@ export const AppRoutes: Routes = [
         component: LoginComponent
       }
     ]
+  },
+  // define the route to handle 404, not found
+  {
+    path: '404',
+    component: NotFoundComponent
+  },
+  // define the path to handle routes that do not match
+  {
+    path: '**',
+    redirectTo: '404'
   }
-
 ];
