@@ -15,7 +15,7 @@ import { CookieService } from 'ngx-cookie-service';
 // imports from the rxjs module
 import { BehaviorSubject, Observable, of } from 'rxjs';
 // import our custom CurrentUser model
-import { CurrentUser } from '../models/current-user';
+import { CurrentUser } from '../models/current-user.model';
 
 // declare the injectable
 @Injectable({

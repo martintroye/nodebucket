@@ -13,7 +13,7 @@ import { Component, OnInit } from '@angular/core';
 // import our custom authentication service
 import { AuthenticationService } from '../services/authentication.service';
 // import our custom current user model
-import { CurrentUser } from '../models/current-user';
+import { CurrentUser } from '../models/current-user.model';
 // imports from the angular router modules
 import { Router } from '@angular/router';
 

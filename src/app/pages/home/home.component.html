@@ -1,8 +1,67 @@
-<div fxLayout="column" class="main-welcome">
-  <h1 class="title">
-    Welcome to WEB 450's - nodebucket Project <br />
-    <span class="subtitle">
-      Pay close attention to the requirements, double and triple check the files for code attribution, and do not wait unitl the last minute to begin working on each item.
-    </span>
-  </h1>
-</div>
+<div style="margin: 0 auto;">
+    <div class="example-container">
+      <h2>To do</h2>
+  
+      <div id="todo" cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo"
+        [cdkDropListConnectedTo]="[doingList, doneList]" class="example-list" (cdkDropListDropped)="drop($event)">
+        <div id="{{i}}" cdkDrag class="example-box" *ngFor="let item of todo; let i = index">
+          <div fxLayout="column" fxFlexFill>
+            <div fxLayout="row" fxFlexFill>
+              <div fxFlex></div>
+              <a href="javscript: void(0);" style="cursor: pointer;padding-right: 6px;" (click)="delete(todo, i)"><i class="fas fa-trash"></i></a>
+              <a href="javscript: void(0);" style="cursor: pointer;" (click)="move(todoList, doingList, i)"><i
+                  class="fas fa-arrow-circle-right"></i></a>
+            </div>
+            <div fxLayout="row" fxFlexFill style="padding-top:5px;">
+              {{item.description}}
+            </div>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  
+    <div class="example-container">
+      <h2>Doing</h2>
+  
+      <div id="inprogress" cdkDropList #doingList="cdkDropList" [cdkDropListData]="doing"
+        [cdkDropListConnectedTo]="[todoList, doneList]" class="example-list" (cdkDropListDropped)="drop($event)">
+        <div id="{{i}}" class="example-box" *ngFor="let item of doing; let i = index" cdkDrag>
+          <div fxLayout="column" fxFlexFill>
+            <div fxLayout="row" fxFlexFill>
+              <a href="javscript: void(0);" style="cursor: pointer;" (click)="move(doingList, todoList, i)"><i
+                  class="fas fa-arrow-circle-left"></i></a>
+              <div fxFlex></div>
+              <a href="javscript: void(0);" style="cursor: pointer;padding-right: 6px;" (click)="delete(doing, i)"><i class="fas fa-trash"></i></a>
+              <a href="javscript: void(0);" style="cursor: pointer;" (click)="move(doingList, doneList, i)"><i
+                  class="fas fa-arrow-circle-right"></i></a>
+            </div>
+            <div fxLayout="row" fxFlexFill style="padding-top:5px;">
+              {{item.description}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="example-container">
+      <h2>Done</h2>
+  
+      <div id="completed" cdkDropList #doneList="cdkDropList" [cdkDropListData]="done"
+        [cdkDropListConnectedTo]="[todoList, doingList]" class="example-list" (cdkDropListDropped)="drop($event)">
+        <div id="{{i}}" class="example-box" *ngFor="let item of done; let i = index" cdkDrag>
+          <div fxLayout="column" fxFlexFill>
+            <div fxLayout="row" fxFlexFill>
+              <a href="javscript: void(0);" style="cursor: pointer;" (click)="move(doneList, doingList, i)"><i
+                  class="fas fa-arrow-circle-left"></i></a>
+              <div fxFlex></div>
+              <a href="javscript: void(0);" style="cursor: pointer;" (click)="delete(done, i)"><i class="fas fa-trash"></i></a>
+            </div>
+            <div fxLayout="row" fxFlexFill style="padding-top:5px;">
+              {{item.description}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

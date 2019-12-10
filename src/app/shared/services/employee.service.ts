@@ -11,11 +11,12 @@
 // imports from the angular core module
 import { Injectable } from '@angular/core';
 // import our custom CurrentUser model
-import { CurrentUser } from '../models/current-user';
+import { CurrentUser } from '../models/current-user.model';
 // imports from the angular common http
 import { HttpClient } from '@angular/common/http';
 // imports from the rxjs module
 import { Observable } from 'rxjs';
+import { TaskList } from '../models/task-list.model';
 
 // declare the injectable
 @Injectable({
@@ -42,5 +43,17 @@ export class EmployeeService {
   public findEmployeeById(empId: string): Observable<CurrentUser> {
     // using the httpClient get call the api and return an Observable CurrentUser
     return this.httpClient.get<CurrentUser>(`${this.baseUrl}/employees/${empId}`);
+  }
+
+  public findAllTasks(empId: number): Observable<TaskList> {
+    return this.httpClient.get<TaskList>(`${this.baseUrl}/employees/${empId}/tasks`);
+  }
+
+  public deleteTask(id: string): Observable<TaskList> {
+    throw new Error('Method not implemented.');
+  }
+
+  public updateTask(): Observable<TaskList> {
+    throw new Error('Method not implemented.');
   }
 }
