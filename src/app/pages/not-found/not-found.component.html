@@ -1,1 +1,37 @@
-<p>not-found works!</p>
+<!--
+============================================
+; Title: nodebucket
+; Author: Troy Martin
+; Date: 11/29/2019
+; Modified By: Troy Martin
+; Description: Login form
+;===========================================
+-->
+
+<!-- define the material card -->
+<mat-card fxFlex="0 0 100">
+  <!-- define the material card content -->
+  <mat-card-content style="padding-top:25px;" fxFlex="0 0 100">
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+      <div>
+        <article>
+          <h1 class="font">Oops, page not found.</h1>
+          <p class="font--lg">
+            We sent our best retriever to find the page. <br />But even Buck
+            couldn't find that one. <br />We suggest
+            <a routerLink="/" href="#">Home</a> or selecting Back on your
+            browser.
+          </p>
+        </article>
+      </div>
+      <img
+        src="../../../assets/Lab_confused_space.png"
+        title="A confused Buck"
+        style="border-radius: 10%;"
+      />
+    </div>
+  </mat-card-content>
+
+  <!-- define the container for the buttons -->
+  <mat-card-actions> </mat-card-actions>
+</mat-card>

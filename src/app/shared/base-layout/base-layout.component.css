@@ -21,6 +21,10 @@ nav{
   padding-left: 30px;
 }
 
+main {
+  margin-bottom: 6rem;
+}
+
 .footer {
   bottom: 0;
   position: absolute;

@@ -14,7 +14,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   // define the HTML template for the component
   templateUrl: './about.component.html',
-  // defin the CSS file for the component
+  // define the CSS file for the component
   styleUrls: ['./about.component.css']
 })
 // declare and export the component class

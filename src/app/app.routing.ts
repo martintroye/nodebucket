@@ -30,16 +30,17 @@ export const AppRoutes: Routes = [
     path: '',
     component: BaseLayoutComponent,
     children: [
-      // define the home route, requires route guard
+      // define the home route route guard to secure
       {
         path: '',
         component: HomeComponent,
         canActivate: [AuthGuard]
       },
-      // define the route for the About page, no route guard required
+      // define the route for the About page route guard to secure
       {
         path: 'about',
-        component: AboutComponent
+        component: AboutComponent,
+        canActivate: [AuthGuard]
       }
     ]
   },
@@ -51,17 +52,17 @@ export const AppRoutes: Routes = [
       {
         path: 'login',
         component: LoginComponent
-      }
+      },
+      // define the route to handle 404, not found
+      {
+        path: '404',
+        component: NotFoundComponent
+      },
     ]
-  },
-  // define the route to handle 404, not found
-  {
-    path: '404',
-    component: NotFoundComponent
   },
   // define the path to handle routes that do not match
   {
     path: '**',
-    redirectTo: '404'
+    redirectTo: '/session/404'
   }
 ];

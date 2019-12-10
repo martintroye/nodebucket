@@ -9,3 +9,58 @@
   align-content: center;
   place-content: center;
 }
+
+.mat-card {
+  border: 1px solid black;
+}
+
+.about__figure {
+  max-height: 156px;
+  max-width: 188px;
+}
+
+.about__figure__image {
+  border-radius: 10%;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.about__figure__caption {
+  text-align: center;
+}
+
+.mat-card-header {
+  margin: -16px -16px 16px -16px !important;
+  background-color: #d1c4e9;
+}
+
+.mat-card-header .mat-card-title{
+  margin-top:6px !important;
+  margin-bottom: 6px !important;
+}
+
+.card__title{
+  margin-block-start: 0 !important;
+  margin-block-end: 0 !important;
+}
+
+.social__link {
+  cursor: pointer;
+  font-size:1.5rem;
+  padding-right:1rem;
+}
+
+article {
+  padding-top: .5rem;
+}
+
+.mat-card-footer {
+  border-top: black solid 1px;
+  background-color: #ffecaf;
+}
+
+.footer__logo {
+  margin: 0px 16px;
+  padding: .5rem;
+}
+
