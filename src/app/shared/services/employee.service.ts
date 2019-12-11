@@ -17,6 +17,7 @@ import { HttpClient } from '@angular/common/http';
 // imports from the rxjs module
 import { Observable } from 'rxjs';
 import { TaskList } from '../models/task-list.model';
+import { Task } from '../models/task.model';
 
 // declare the injectable
 @Injectable({
@@ -49,11 +50,11 @@ export class EmployeeService {
     return this.httpClient.get<TaskList>(`${this.baseUrl}/employees/${empId}/tasks`);
   }
 
-  public deleteTask(id: string): Observable<TaskList> {
-    throw new Error('Method not implemented.');
+  public deleteTask(empId: number, taskId: string): Observable<TaskList> {
+    return this.httpClient.delete<TaskList>(`${this.baseUrl}/employees/${empId}/tasks/${taskId}`);
   }
 
-  public updateTask(): Observable<TaskList> {
-    throw new Error('Method not implemented.');
+  public updateTask(empId: number, todo: Task[], doing: Task[], done: Task[]): Observable<TaskList> {
+    return this.httpClient.put<TaskList>(`${this.baseUrl}/employees/${empId}/tasks`, {todo, doing, done});
   }
 }

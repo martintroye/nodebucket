@@ -51,6 +51,8 @@ import { AuthenticationService } from './shared/services/authentication.service'
 // import out custom about component
 import { AboutComponent } from './pages/about/about.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 
 
 // declare the module
@@ -80,7 +82,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    DragDropModule
   ],
   // define the injectables for the module
   providers: [AuthGuard, CookieService, AuthenticationService],

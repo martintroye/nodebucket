@@ -1,10 +1,10 @@
 <div style="margin: 0 auto;">
-    <div class="example-container">
-      <h2>To do</h2>
-  
+    <div class="task-container">
+      <h2>To do <i class="far fa-plus-square" style="float: right;cursor: pointer;" title="Add task" (click)="addTask()"></i></h2>
+
       <div id="todo" cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo"
-        [cdkDropListConnectedTo]="[doingList, doneList]" class="example-list" (cdkDropListDropped)="drop($event)">
-        <div id="{{i}}" cdkDrag class="example-box" *ngFor="let item of todo; let i = index">
+        [cdkDropListConnectedTo]="[doingList, doneList]" class="task-list" (cdkDropListDropped)="drop($event)">
+        <div id="{{i}}" cdkDrag class="task-box" *ngFor="let item of todo; let i = index">
           <div fxLayout="column" fxFlexFill>
             <div fxLayout="row" fxFlexFill>
               <div fxFlex></div>
@@ -16,17 +16,17 @@
               {{item.description}}
             </div>
           </div>
-  
+
         </div>
       </div>
     </div>
-  
-    <div class="example-container">
+
+    <div class="task-container">
       <h2>Doing</h2>
-  
+
       <div id="inprogress" cdkDropList #doingList="cdkDropList" [cdkDropListData]="doing"
-        [cdkDropListConnectedTo]="[todoList, doneList]" class="example-list" (cdkDropListDropped)="drop($event)">
-        <div id="{{i}}" class="example-box" *ngFor="let item of doing; let i = index" cdkDrag>
+        [cdkDropListConnectedTo]="[todoList, doneList]" class="task-list" (cdkDropListDropped)="drop($event)">
+        <div id="{{i}}" class="task-box" *ngFor="let item of doing; let i = index" cdkDrag>
           <div fxLayout="column" fxFlexFill>
             <div fxLayout="row" fxFlexFill>
               <a href="javscript: void(0);" style="cursor: pointer;" (click)="move(doingList, todoList, i)"><i
@@ -43,13 +43,13 @@
         </div>
       </div>
     </div>
-  
-    <div class="example-container">
+
+    <div class="task-container">
       <h2>Done</h2>
-  
+
       <div id="completed" cdkDropList #doneList="cdkDropList" [cdkDropListData]="done"
-        [cdkDropListConnectedTo]="[todoList, doingList]" class="example-list" (cdkDropListDropped)="drop($event)">
-        <div id="{{i}}" class="example-box" *ngFor="let item of done; let i = index" cdkDrag>
+        [cdkDropListConnectedTo]="[todoList, doingList]" class="task-list" (cdkDropListDropped)="drop($event)">
+        <div id="{{i}}" class="task-box" *ngFor="let item of done; let i = index" cdkDrag>
           <div fxLayout="column" fxFlexFill>
             <div fxLayout="row" fxFlexFill>
               <a href="javscript: void(0);" style="cursor: pointer;" (click)="move(doneList, doingList, i)"><i
