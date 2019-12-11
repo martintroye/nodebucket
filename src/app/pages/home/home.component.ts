@@ -19,8 +19,9 @@ import {
   transferArrayItem,
   CdkDropList
 } from '@angular/cdk/drag-drop';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
 import { Subscription } from 'rxjs';
+import { CreateTaskDialogComponent } from '../create-task-dialog/create-task-dialog.component';
 
 // declare the component
 @Component({
@@ -52,7 +53,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(
     private employeeService: EmployeeService,
     private authenticationService: AuthenticationService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) {}
 
   /*
@@ -64,22 +66,22 @@ export class HomeComponent implements OnInit, OnDestroy {
     // get the signed in user information
     this.currentUser = this.authenticationService.getCookie();
     // get the tasks for the signed in user
-    this.findAllTasks$ = this.employeeService.findAllTasks(this.currentUser.empId).subscribe(
-      taskList => {
-        // on response set the lists
-        this.todo = taskList.todo;
-        this.doing = taskList.doing;
-        this.done = taskList.done;
-      },
-      err => {
-        // log the error to the console
-        console.log(err);
-        this.displayMessage('Oops, an error occurred retrieving your tasks.')
-      },
-      () => {
-        console.log('complete');
-      }
-    );
+    this.findAllTasks();
+  }
+
+  private findAllTasks() {
+    this.findAllTasks$ = this.employeeService.findAllTasks(this.currentUser.empId).subscribe(taskList => {
+      // on response set the lists
+      this.todo = taskList.todo;
+      this.doing = taskList.doing;
+      this.done = taskList.done;
+    }, err => {
+      // log the error to the console
+      console.log(err);
+      this.displayMessage('Oops, an error occurred retrieving your tasks.');
+    }, () => {
+      console.log('complete');
+    });
   }
 
   /*
@@ -182,6 +184,19 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   addTask() {
     console.log('add');
+    // declare and create the material dialog using the customer order dialog component
+    const dialogRef = this.dialog.open(CreateTaskDialogComponent, {
+      width: '40%',
+      disableClose: true, // the user cannot click in the overlay to close
+    });
+
+    // subscribe to the after closed event
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.findAllTasks();
+      }
+      console.log('The dialog was closed');
+    });
   }
 
   /*

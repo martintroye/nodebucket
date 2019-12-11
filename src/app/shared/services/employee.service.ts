@@ -25,10 +25,8 @@ import { Task } from '../models/task.model';
 })
 // declare and export the service class
 export class EmployeeService {
-
   // declare and set the default base url for the http service calls
   baseUrl = 'http://localhost:3000/api';
-
 
   /*
   ; Response: none
@@ -46,15 +44,39 @@ export class EmployeeService {
     return this.httpClient.get<CurrentUser>(`${this.baseUrl}/employees/${empId}`);
   }
 
+  /*
+  ; Params: none
+  ; Response: none
+  ; Description:
+  */
   public findAllTasks(empId: number): Observable<TaskList> {
     return this.httpClient.get<TaskList>(`${this.baseUrl}/employees/${empId}/tasks`);
   }
 
+  /*
+  ; Params: none
+  ; Response: none
+  ; Description:
+  */
   public deleteTask(empId: number, taskId: string): Observable<TaskList> {
     return this.httpClient.delete<TaskList>(`${this.baseUrl}/employees/${empId}/tasks/${taskId}`);
   }
 
+  /*
+  ; Params: none
+  ; Response: none
+  ; Description:
+  */
   public updateTask(empId: number, todo: Task[], doing: Task[], done: Task[]): Observable<TaskList> {
     return this.httpClient.put<TaskList>(`${this.baseUrl}/employees/${empId}/tasks`, {todo, doing, done});
+  }
+
+  /*
+  ; Params: none
+  ; Response: none
+  ; Description:
+  */
+  createTask(empId: number, description: string): Observable<TaskList> {
+    return this.httpClient.post<TaskList>(`${this.baseUrl}/employees/${empId}/tasks`, {description});
   }
 }
