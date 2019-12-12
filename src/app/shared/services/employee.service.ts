@@ -65,7 +65,7 @@ export class EmployeeService {
   /*
   ; Params: none
   ; Response: none
-  ; Description:
+  ; Description: Update the task 
   */
   public updateTask(empId: number, todo: Task[], doing: Task[], done: Task[]): Observable<TaskList> {
     return this.httpClient.put<TaskList>(`${this.baseUrl}/employees/${empId}/tasks`, {todo, doing, done});
@@ -74,7 +74,7 @@ export class EmployeeService {
   /*
   ; Params: none
   ; Response: none
-  ; Description:
+  ; Description: Create a a task and return the updated list
   */
   createTask(empId: number, description: string): Observable<TaskList> {
     return this.httpClient.post<TaskList>(`${this.baseUrl}/employees/${empId}/tasks`, {description});

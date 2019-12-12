@@ -30,9 +30,7 @@ export class CreateTaskDialogComponent implements OnInit {
   }
 
   submit() {
-    if (this.createTask.invalid) {
-
-    } else {
+    if (!this.createTask.invalid) {
       this.createTask$ = this.employeeService.createTask(this.currentUser.empId, this.createTask.value.description).subscribe(
         t => {
           this.dialogRef.close(true);

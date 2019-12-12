@@ -18,13 +18,14 @@
           <!-- validation error -->
           <mat-error *ngIf="createTask.controls['description'].hasError('required')">Description is required</mat-error>
         </mat-form-field>
+
       </div>
     </form>
 
   </mat-dialog-content>
   <mat-dialog-actions fxLayoutAlign="end center">
     <button mat-raised-button [mat-dialog-close]="false">Cancel</button>
-    <button mat-raised-button color="primary" (click)="submit()">
+    <button mat-raised-button color="primary" [disabled]="createTask.invalid" (click)="submit()">
       Save
     </button>
   </mat-dialog-actions>
