@@ -69,6 +69,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.findAllTasks();
   }
 
+  /*
+  ; Params: none
+  ; Response: none
+  ; Description: retrieve tasks for the current user
+  */
   private findAllTasks() {
     this.findAllTasks$ = this.employeeService.findAllTasks(this.currentUser.empId).subscribe(taskList => {
       // on response set the lists
@@ -80,6 +85,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       console.log(err);
       this.displayMessage('Oops, an error occurred retrieving your tasks.');
     }, () => {
+      // the subscription has completed
       console.log('complete');
     });
   }
@@ -182,8 +188,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
   }
 
+  /*
+  ; Params: none
+  ; Response: none
+  ; Description: open the create task dialog box
+  */
   addTask() {
-    console.log('add');
     // declare and create the material dialog using the customer order dialog component
     const dialogRef = this.dialog.open(CreateTaskDialogComponent, {
       width: '40%',
