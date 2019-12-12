@@ -1,0 +1,17 @@
+/*
+; Styles applied to the auth-layout element to maintain the flex tree
+; http://blog.bogdancarpean.com/how-to-apply-flex-on-angular-component/
+*/
+:host {
+  display: flex;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #673ab7;
+  font-weight: 900;
+}
+
+.font--lg {
+  font-size: 1.5rem;
+}

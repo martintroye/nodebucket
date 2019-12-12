@@ -1,0 +1,134 @@
+<!--
+============================================
+; Title: nodebucket
+; Author: Troy Martin
+; Date: 12/9/2019
+; Modified By: Troy Martin
+; Description: About page
+;===========================================
+-->
+
+<!-- define the material card -->
+<mat-card fxFlex="1 1 80">
+  <mat-card-header fxLayout="row" fxLayoutAlign="start center">
+    <mat-card-title>
+      <h3 class="font card__title">
+        <i class="fas fa-info-circle"></i>&nbsp;
+        About
+      </h3>
+    </mat-card-title>
+  </mat-card-header>
+
+  <!-- define the material card content -->
+  <mat-card-content>
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <div fxLayout="column">
+          <figure class="about__figure">
+            <img
+              src="../../../assets/IMG_0836.jpg"
+              class="about__figure__image"
+              alt="Ruby"
+              title="Ruby"
+            />
+            <figcaption class="font about__figure__caption">
+              Ruby
+            </figcaption>
+          </figure>
+          <figure class="about__figure">
+            <img
+              src="../../../assets/IMG_2758.JPG"
+              class="about__figure__image"
+              alt="Millie"
+              title="Mille"
+            />
+            <figcaption class="font about__figure__caption">
+              Millie
+            </figcaption>
+          </figure>
+        </div>
+
+        <article fxFlex>
+          <p class="font">
+            Meet our founders, Ruby and Millie. Ruby and Millie have a goal, to
+            deliver technology solutions that help people get their work done,
+            so they have more time to play with their dogs, and well, if they
+            have to, their cats.
+          </p>
+          <p class="font">
+            The nodebucket application, a task management solution, came to them
+            one day when it was apparent that someone had forgotten to take them
+            on their daily walk.
+          </p>
+          <p class="font">
+            If only there were a way for their people to easily see what they
+            have to do today.
+          </p>
+          <p class="font">
+            Use nodebucket to track what you have to-do, have started, and what
+            you have completed. Create a task, it will automatically be added to
+            your To-do list. The simple drag and drop interface allows you to
+            quickly order and update the status of the task by putting it in the
+            proper column To-do, Doing, or Done. The application is secured by
+            your unique id, making sure that only you can see and manage your
+            tasks. nodebucket is designed to run on your desktop, tablet or
+            phone so you will always be able to view and manage your tasks.
+          </p>
+          <p class="font">
+            nodebucket was written and is maintained by bLabWare. It was built
+            using the MEAN stack, Mongo DB, Express, Angular, and Nodejs. For
+            more information about bLabWare check out our sites on the various
+            social media platforms or email us using the links below.
+          </p>
+          <p class="font">
+            So get started with nodebucket today and don't forget the important
+            stuff like:
+          </p>
+          <ul class="font">
+            <li>Walk the dogs.</li>
+            <li>Pick up dog food.</li>
+            <li>Give the dogs a bone.</li>
+            <li>Take the dogs to the park.</li>
+            <li>Play ball with the dogs.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </mat-card-content>
+
+  <!-- define the container for the buttons -->
+  <mat-card-footer fxLayout="row" fxLayoutAlign="center center">
+    <!-- custom logo for bLabWare -->
+    <img
+      src="../../../assets/bLabWare-small.png"
+      title="Brought to you by bLabWare"
+      class="footer__logo"
+    />
+    <!-- spacer -->
+    <div fxFlex></div>
+    <span
+      ><i
+        class="fas fa-envelope-square social__link"
+        title="Email us"
+      ></i
+    ></span>
+    <span
+      ><i
+        class="fab fa-twitter-square social__link"
+        title="Twitter"
+      ></i
+    ></span>
+    <span
+      ><i
+        class="fab fa-facebook-square social__link"
+        title="Facebook"
+      ></i
+    ></span>
+    <span
+      ><i
+        class="fab fa-instagram social__link"
+        title="Instagram"
+      ></i
+    ></span>
+  </mat-card-footer>
+</mat-card>

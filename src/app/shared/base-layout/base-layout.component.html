@@ -1,12 +1,12 @@
-<div fxLayout="column">
+<div fxLayout="column" style="position:relative;min-height:100vh;">
   <!-- navigation -->
-  <nav fxFlex>
+  <nav>
     <mat-toolbar color="primary">
       <mat-toolbar-row>
         <!-- logo -->
         <button class="font logo" routerLink="/" mat-button>nodebucket</button>
         <button class="font navbar-link" routerLink="/" mat-button>Home</button>
-        <button class="font navbar-link" mat-button>About</button>
+        <button class="font navbar-link" mat-button routerLink="about">About</button>
         <!-- spacer to push buttons to the right -->
         <div fxFlex></div>
         <!-- login button displayed if the user is not logged in -->
@@ -42,8 +42,8 @@
   </main>
 
   <!-- footer -->
-  <footer class="footer" fxFlex>
-    <mat-toolbar class="font footer-content" color="accent">
+  <footer class="footer" fxFlex fxLayout="row" fxLayoutAlign="start center">
+    <mat-toolbar class="font footer-content" color="accent" fxFlex>
       <p>
         &copy; {{ year | date: "yyyy" }} - nodebucket -
         <a href="https://www.bellevue.edu/" class="bu-link" target="_blank">Bellevue University</a>
@@ -51,7 +51,7 @@
       <!-- spacer to push buttons to the right -->
       <div fxFlex></div>
       <!-- custom logo for bLabWare -->
-      <img src="../../../assets/bLabWare-small.png" title="Brought to you by bLabWare">
+      <img src="../../../assets/bLabWare-small.png" title="Brought to you by bLabWare" style="width: 38px;height: 34px;margin-block-start: 1rem;padding-right:1rem;">
     </mat-toolbar>
   </footer>
 </div>

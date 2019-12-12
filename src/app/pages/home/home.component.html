@@ -1,8 +1,67 @@
-<div fxLayout="column" class="main-welcome">
-  <h1 class="title">
-    Welcome to WEB 450's - nodebucket Project <br />
-    <span class="subtitle">
-      Pay close attention to the requirements, double and triple check the files for code attribution, and do not wait unitl the last minute to begin working on each item.
-    </span>
-  </h1>
-</div>
+<div style="margin: 0 auto;">
+    <div class="task-container">
+      <h2>To do <i class="far fa-plus-square" style="float: right;cursor: pointer;" title="Add task" (click)="addTask()"></i></h2>
+
+      <div id="todo" cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo"
+        [cdkDropListConnectedTo]="[doingList, doneList]" class="task-list" (cdkDropListDropped)="drop($event)">
+        <div id="{{i}}" cdkDrag class="task-box" *ngFor="let item of todo; let i = index">
+          <div fxLayout="row" fxFlexFill>
+            <div fxLayout="column" fxFlex="0 0 5%">
+
+            </div>
+            <div fxLayout="column" fxFlex="0 0 90%" style="padding-left:5px; padding-right:5px;">
+                {{item.description}}
+            </div>
+            <div fxLayout="column" fxLayoutAlign="start end" fxLayoutGap="5px" fxFlex="0 0 5%">
+                <a href="javscript: void(0);" style="cursor: pointer;" (click)="move(todoList, doingList, i)"><i class="fas fa-arrow-circle-right"></i></a>
+                <a href="javscript: void(0);" style="cursor: pointer;" (click)="delete(todo, i)"><i class="fas fa-trash"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="task-container">
+      <h2>Doing</h2>
+
+      <div id="inprogress" cdkDropList #doingList="cdkDropList" [cdkDropListData]="doing" [cdkDropListConnectedTo]="[todoList, doneList]" class="task-list" (cdkDropListDropped)="drop($event)">
+        <div id="{{i}}" class="task-box" *ngFor="let item of doing; let i = index" cdkDrag>
+            <div fxLayout="row" fxFlexFill>
+                <div fxLayout="column"  fxLayoutAlign="start start" fxLayoutGap="5px"  fxFlex="0 0 5%">
+                    <a href="javscript: void(0);" style="cursor: pointer;" (click)="move(doingList, todoList, i)"><i
+                      class="fas fa-arrow-circle-left"></i></a>
+                </div>
+                <div fxLayout="column" fxFlex="0 0 90%" style="padding-left:5px; padding-right:5px;">
+                    {{item.description}}
+                </div>
+                <div fxLayout="column" fxLayoutAlign="start end" fxLayoutGap="5px" fxFlex="0 0 5%">
+                    <a href="javscript: void(0);" style="cursor: pointer;" (click)="move(doingList, doneList, i)"><i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="javscript: void(0);" style="cursor: pointer;" (click)="delete(doing, i)"><i class="fas fa-trash"></i></a>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="task-container">
+      <h2>Done</h2>
+
+      <div id="completed" cdkDropList #doneList="cdkDropList" [cdkDropListData]="done"
+        [cdkDropListConnectedTo]="[todoList, doingList]" class="task-list" (cdkDropListDropped)="drop($event)">
+        <div id="{{i}}" class="task-box" *ngFor="let item of done; let i = index" cdkDrag>
+          <div fxLayout="row" fxFlexFill>
+              <div fxLayout="column" fxFlex="0 0 5%">
+                  <a href="javscript: void(0);" style="cursor: pointer;" (click)="move(doneList, doingList, i)"><i class="fas fa-arrow-circle-left"></i></a>
+              </div>
+              <div fxLayout="column" fxFlex="0 0 90%" style="padding-left:5px; padding-right:5px;">
+                  {{item.description}}
+              </div>
+              <div fxLayout="column" fxLayoutAlign="start end" fxLayoutGap="5px" fxFlex="0 0 5%">
+                  <a href="javscript: void(0);" style="cursor: pointer;" (click)="delete(done, i)"><i class="fas fa-trash"></i></a>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>

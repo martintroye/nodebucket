@@ -39,7 +39,7 @@ import {MatButtonModule} from '@angular/material/button';
 // import the angular material modules
 import {MatIconModule} from '@angular/material/icon';
 // import the angular material modules
-import {MatCardModule, MatFormFieldModule, MatInputModule, MatSnackBarModule} from '@angular/material';
+import {MatCardModule, MatFormFieldModule, MatInputModule, MatSnackBarModule, MatDialog, MatDialogModule} from '@angular/material';
 // import the ngx-cookie-service module
 import { CookieService } from 'ngx-cookie-service';
 // import our custom login component
@@ -48,6 +48,13 @@ import { LoginComponent } from './pages/login/login.component';
 import { AuthGuard } from './shared/guards/auth/auth-guard';
 // import our custom authentication service
 import { AuthenticationService } from './shared/services/authentication.service';
+// import out custom about component
+import { AboutComponent } from './pages/about/about.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { EmployeeService } from './shared/services/employee.service';
+import { CreateTaskDialogComponent } from './pages/create-task-dialog/create-task-dialog.component';
+
 
 
 // declare the module
@@ -58,7 +65,10 @@ import { AuthenticationService } from './shared/services/authentication.service'
     BaseLayoutComponent,
     AuthLayoutComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    AboutComponent,
+    NotFoundComponent,
+    CreateTaskDialogComponent
   ],
   // modules to import into this module
   imports: [
@@ -75,10 +85,14 @@ import { AuthenticationService } from './shared/services/authentication.service'
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    DragDropModule,
+    MatDialogModule,
+
   ],
   // define the injectables for the module
-  providers: [AuthGuard, CookieService, AuthenticationService],
+  providers: [AuthGuard, CookieService, AuthenticationService, EmployeeService, MatDialog],
+  entryComponents: [CreateTaskDialogComponent],
   // define the component to bootstrap the application
   bootstrap: [AppComponent]
 })

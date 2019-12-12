@@ -1,0 +1,32 @@
+<!--
+============================================
+; Title: nodebucket
+; Author: Troy Martin
+; Date: 12/11/2019
+; Modified By: Troy Martin
+; Description: Dialog to create task
+;===========================================
+-->
+<div fxLayout="column" fxFlexFill style="padding: 10px;">
+  <h2 mat-dialog-title>Create a new task</h2>
+  <mat-dialog-content>
+    <!-- define the form -->
+    <form [formGroup]="createTask" (ngSubmit)="submit()">
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <mat-form-field fxFlex fxFlexFill>
+          <textarea matInput [formControl]="createTask.controls['description']" placeholder="Describe your task" autofocus></textarea>
+          <!-- validation error -->
+          <mat-error *ngIf="createTask.controls['description'].hasError('required')">Description is required</mat-error>
+        </mat-form-field>
+
+      </div>
+    </form>
+
+  </mat-dialog-content>
+  <mat-dialog-actions fxLayoutAlign="end center">
+    <button mat-raised-button [mat-dialog-close]="false">Cancel</button>
+    <button mat-raised-button color="primary" [disabled]="createTask.invalid" (click)="submit()">
+      Save
+    </button>
+  </mat-dialog-actions>
+</div>
