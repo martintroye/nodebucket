@@ -26,7 +26,7 @@ import { Task } from '../models/task.model';
 // declare and export the service class
 export class EmployeeService {
   // declare and set the default base url for the http service calls
-  baseUrl = 'http://localhost:3000/api';
+  baseUrl = '/api';
 
   /*
   ; Response: none
@@ -65,7 +65,7 @@ export class EmployeeService {
   /*
   ; Params: none
   ; Response: none
-  ; Description: Update the task 
+  ; Description: Update the task
   */
   public updateTask(empId: number, todo: Task[], doing: Task[], done: Task[]): Observable<TaskList> {
     return this.httpClient.put<TaskList>(`${this.baseUrl}/employees/${empId}/tasks`, {todo, doing, done});
