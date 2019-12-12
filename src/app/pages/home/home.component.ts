@@ -41,11 +41,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   doing: Task[] = [];
   done: Task[] = [];
 
-  // declare the subscriptions used in the component
-  findAllTasks$: Subscription;
-  updateTask$: Subscription;
-  deleteTask$: Subscription;
-
   /*
   ; Response: none
   ; Description: Default constructor, with injections needed in component
@@ -75,7 +70,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ; Description: retrieve tasks for the current user
   */
   private findAllTasks() {
-    this.findAllTasks$ = this.employeeService.findAllTasks(this.currentUser.empId).subscribe(taskList => {
+    this.employeeService.findAllTasks(this.currentUser.empId).subscribe(taskList => {
       // on response set the lists
       this.todo = taskList.todo;
       this.doing = taskList.doing;
@@ -96,10 +91,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ; Description: Clean up on destruction of the component
   */
   ngOnDestroy() {
-    // unsubscribe from our observables
-    this.findAllTasks$.unsubscribe();
-    this.updateTask$.unsubscribe();
-    this.deleteTask$.unsubscribe();
+
   }
 
   /*
@@ -168,7 +160,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     // delete the task from the database
-    this.deleteTask$ = this.employeeService.deleteTask(this.currentUser.empId, task._id).subscribe(
+    this.employeeService.deleteTask(this.currentUser.empId, task._id).subscribe(
       t => {
         // on response set the returned arrays
         this.todo = t.todo;
@@ -216,7 +208,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   */
   private updateTask() {
     // change the task status and update the list
-    this.updateTask$ = this.employeeService
+    this.employeeService
       .updateTask(this.currentUser.empId, this.todo, this.doing, this.done)
       .subscribe(
         t => {
