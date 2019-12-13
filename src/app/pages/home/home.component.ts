@@ -8,19 +8,25 @@
 ;===========================================
 */
 // imports from the angular core module
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Task } from 'src/app/shared/models/task.model';
-import { EmployeeService } from 'src/app/shared/services/employee.service';
-import { AuthenticationService } from 'src/app/shared/services/authentication.service';
-import { CurrentUser } from 'src/app/shared/models/current-user.model';
+import { Component, OnInit } from '@angular/core';
+// imports from the angular cdk module
 import {
   CdkDragDrop,
   moveItemInArray,
   transferArrayItem,
   CdkDropList
 } from '@angular/cdk/drag-drop';
+// imports from the angular material module
 import { MatSnackBar, MatDialog } from '@angular/material';
-import { Subscription } from 'rxjs';
+// import our custom task model
+import { Task } from 'src/app/shared/models/task.model';
+// import our custom employee service
+import { EmployeeService } from 'src/app/shared/services/employee.service';
+// import our custom authentication service
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+// import our custom current user model
+import { CurrentUser } from 'src/app/shared/models/current-user.model';
+// import our custom create task dialog component
 import { CreateTaskDialogComponent } from '../create-task-dialog/create-task-dialog.component';
 
 // declare the component
@@ -33,7 +39,7 @@ import { CreateTaskDialogComponent } from '../create-task-dialog/create-task-dia
   styleUrls: ['./home.component.css']
 })
 // define and export the component
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit {
   // declare the current user
   currentUser: CurrentUser;
   // declare the todo, doing and done task arrays to bind to the lists
@@ -83,15 +89,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       // the subscription has completed
       console.log('complete');
     });
-  }
-
-  /*
-  ; Params: none
-  ; Response: none
-  ; Description: Clean up on destruction of the component
-  */
-  ngOnDestroy() {
-
   }
 
   /*
@@ -198,9 +195,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     // subscribe to the after closed event
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        // on close if success then refresh the tasks
         this.findAllTasks();
       }
-      console.log('The dialog was closed');
     });
   }
 
