@@ -149,35 +149,38 @@ export class HomeComponent implements OnInit, OnDestroy {
   ; Description: Delete the task from the array and persist the changes
   */
   delete(from: Task[], index: number) {
-    // declare the default task
-    let task: Task;
+    if (confirm('Are you sure you want to delete the task?')) {
+      // declare the default task
+      let task: Task;
 
-    // identify the task and remove it from the array for visual
-    if (index === 0) {
-      task = from.shift();
-    } else {
-      task = from.splice(index, 1)[0];
-    }
-
-    // delete the task from the database
-    this.employeeService.deleteTask(this.currentUser.empId, task._id).subscribe(
-      t => {
-        // on response set the returned arrays
-        this.todo = t.todo;
-        this.doing = t.doing;
-        this.done = t.done;
-      },
-      err => {
-        // log the err to the console
-        console.log(err);
-        // display a generic message to the user
-        this.displayMessage('An error occurred trying to delete the task.');
-      },
-      () => {
-        // display a confirmation message to the user
-        this.displayMessage('Task deleted');
+      // identify the task and remove it from the array for visual
+      if (index === 0) {
+        task = from.shift();
+      } else {
+        task = from.splice(index, 1)[0];
       }
-    );
+
+      // delete the task from the database
+      this.employeeService.deleteTask(this.currentUser.empId, task._id).subscribe(
+        t => {
+          // on response set the returned arrays
+          this.todo = t.todo;
+          this.doing = t.doing;
+          this.done = t.done;
+        },
+        err => {
+          // log the err to the console
+          console.log(err);
+          // display a generic message to the user
+          this.displayMessage('An error occurred trying to delete the task.');
+        },
+        () => {
+          // display a confirmation message to the user
+          this.displayMessage('Task deleted');
+        }
+      );
+
+    }
   }
 
   /*
