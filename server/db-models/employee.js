@@ -29,6 +29,7 @@ var employeeSchema = new mongoose.Schema({
   lastName: {
     type: String,
   },
+  // declare the task arrays
   todo: [Task],
   doing: [Task],
   done: [Task]

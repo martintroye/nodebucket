@@ -42,20 +42,22 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule, MatFormFieldModule, MatInputModule, MatSnackBarModule, MatDialog, MatDialogModule} from '@angular/material';
 // import the ngx-cookie-service module
 import { CookieService } from 'ngx-cookie-service';
+// import the cdk drag drop module
+import { DragDropModule } from '@angular/cdk/drag-drop';
 // import our custom login component
 import { LoginComponent } from './pages/login/login.component';
 // import our custom login route guard
 import { AuthGuard } from './shared/guards/auth/auth-guard';
 // import our custom authentication service
 import { AuthenticationService } from './shared/services/authentication.service';
-// import out custom about component
+// import our custom about component
 import { AboutComponent } from './pages/about/about.component';
+// import our custom not found module
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { DragDropModule } from '@angular/cdk/drag-drop';
+// import our custom employee service
 import { EmployeeService } from './shared/services/employee.service';
+// import our custom create task dialog
 import { CreateTaskDialogComponent } from './pages/create-task-dialog/create-task-dialog.component';
-
-
 
 // declare the module
 @NgModule({

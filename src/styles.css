@@ -1,7 +1,7 @@
 /*
-; import angular material theme
+; the angular material theme is included in the angular.json global styles list
+; @angular/material/prebuilt-themes/deeppurple-amber.css
 */
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 html, body {
   height: 100%;
