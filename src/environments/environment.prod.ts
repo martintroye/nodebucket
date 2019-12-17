@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'http://martin-nodebucket.herokuapp.com'
+  baseUrl: 'https://martin-nodebucket.herokuapp.com'
 };
