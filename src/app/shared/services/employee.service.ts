@@ -18,6 +18,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TaskList } from '../models/task-list.model';
 import { Task } from '../models/task.model';
+import { environment } from 'src/environments/environment';
 
 // declare the injectable
 @Injectable({
@@ -26,7 +27,7 @@ import { Task } from '../models/task.model';
 // declare and export the service class
 export class EmployeeService {
   // declare and set the default base url for the http service calls
-  baseUrl = '/api';
+  baseUrl = `${environment.baseUrl}/api`;
 
   /*
   ; Response: none
