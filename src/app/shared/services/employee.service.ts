@@ -18,7 +18,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TaskList } from '../models/task-list.model';
 import { Task } from '../models/task.model';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
 
 // declare the injectable
 @Injectable({
