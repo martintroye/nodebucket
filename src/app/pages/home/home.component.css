@@ -13,11 +13,12 @@
 }
 
 a:focus {
-  background-color: yellow;
+  background-color: #ffd740;
 }
 
 a i {
   font-size: 1rem;
+  color: #673ab7;
 }
 
 /* task css based off of https://material.angular.io/cdk/drag-drop/examples */
